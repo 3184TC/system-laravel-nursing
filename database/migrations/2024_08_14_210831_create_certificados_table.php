@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
-
-            $table->integer('id_nombramiento'); // ID de tipo integer
-            $table->integer('id_persona'); // ID de tipo integer
-            $table->string('tipo');
-            $table->string('numero');
+            $table->string('caso');
+            $table->string('cite');
+            $table->string('cargo'); 
+            $table->string('nombre');
+            $table->string('estudiante_de');
+            $table->string('establecimiento');
             $table->date('fecha_emision');
-            $table->date('fecha_actualizacion');
         
             $table->integer('estado')->default(1); // Campo estado opcional
         

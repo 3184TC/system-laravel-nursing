@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('asistencials', function (Blueprint $table) {
             $table->id();
 
-            $table->int('id_grado');
-            $table->int('id_asignacion');
-            $table->date('fecha_emision');
-            $table->date('fecha_actualizacion');
-        
+            $table->string('nombre');
+            $table->string('genero');
+            $table->string('cargo');
+            $table->string('ci')->unique();
+            $table->string('celular');
             $table->integer('estado')->default(1);
-        
+
             $table->timestamps();
         });
     }

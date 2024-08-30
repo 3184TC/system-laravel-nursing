@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asignacions', function (Blueprint $table) {
+        Schema::create('solicituds', function (Blueprint $table) {
             $table->id();
 
-             
-            $table->integer('id_asistencial');
-            $table->integer('id_establecimiento'); 
-            $table->integer('id_nombramiento');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->string('cite');
+            $table->string('dirigido');
+            $table->string('cargo'); 
+            $table->string('establecimiento');
+            $table->string('ref');
+            $table->date('fecha_emision');
         
-            $table->integer('estado')->default(1); 
+            $table->integer('estado')->default(1); // Campo estado opcional
         
 
             $table->timestamps();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asignacions');
+        Schema::dropIfExists('solicituds');
     }
 };

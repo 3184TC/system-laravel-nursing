@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('nombramientos', function (Blueprint $table) {
             $table->id();
+
+            $table->string('grado');
+            $table->string('docente');
+            $table->string('asignatura');
+            $table->string('año');
+            $table->integer('estado')->default(1);
+
             $table->timestamps();
         });
     }

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Asistencial;
+use App\Models\Grado;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-
-class AsistencialController extends Controller
+class GradoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +13,8 @@ class AsistencialController extends Controller
     public function index()
     {
         //
-        $asistencials = Asistencial::where('estado', 1)->get();
-        return view('asistencial.index', compact('asistencials'));
-        
-    }
-
-    public function pdf(){
-
-        $asistencials=Asistencial::all();
-        $pdf = Pdf::loadView('asistencial.pdf', \compact('asistenciales'));
-        return $pdf->stream();
+        $grados = Grado::where('estado', 1)->get();
+        return view ('grado.index',compact('grados'));
     }
 
     /**
@@ -42,15 +32,13 @@ class AsistencialController extends Controller
     public function store(Request $request)
     {
         //guardar
-        $asistencials = new Asistencial;
-        $asistencials->nombre=$request->input('nombre');
-        $asistencials->genero=$request->input('genero');
-        $asistencials->cargo=$request->input('cargo');
-        $asistencials->ci=$request->input('ci');
-        $asistencials->celular=$request->input('celular');
-        
-        $asistencials->save();
+        $grados = new Grado;
+        $grados->id_persona=$request->input('id_persona');
+        $grados->nivel=$request->input('nivel');
+        $grados->especialidad=$request->input('especialidad');
+        $grados->save();
         return redirect()->back();
+        
     }
 
     /**
@@ -76,13 +64,11 @@ class AsistencialController extends Controller
     public function update(Request $request, $id)
     {
         //actUALIZAR
-        $asistencials = Asistencial::find($id);
-        $asistencials->nombre=$request->input('nombre');
-        $asistencials->genero=$request->input('genero');
-        $asistencials->cargo=$request->input('cargo');
-        $asistencials->ci=$request->input('ci');
-        $asistencials->celular=$request->input('celular');
-        $asistencials->update();
+        $grados = Grado::find($id);
+        $grados->id_persona=$request->input('id_persona');
+        $grados->nivel=$request->input('nivel');
+        $grados->especialidad=$request->input('especialidad');
+        $grados->update();
         return redirect()->back();
     }
 
@@ -92,7 +78,7 @@ class AsistencialController extends Controller
     public function destroy($id)
     {
         //
-        $estado = Asistencial::find($id);
+        $estado = Grado::find($id);
         if ($estado->estado == 1 ) {
             $estado->estado = 0;
             $estado->update();

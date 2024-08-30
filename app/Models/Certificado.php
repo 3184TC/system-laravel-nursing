@@ -10,12 +10,13 @@ class Certificado extends Model
     protected $table = 'certificados';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id_nombramiento',
-        'id_persona',
-        'tipo',
-        'numero',
+        'caso',
+        'cite',
+        'cargo',
+        'nombre',
+        'estudiante_de',
+        'establecimiento',
         'fecha_emision',
-        'fecha_actualizacion',
         'estado',
     ];
     public $timestamps = true;

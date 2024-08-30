@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Asistencial;
+use App\Models\Persona;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-
-class AsistencialController extends Controller
+class PersonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +13,8 @@ class AsistencialController extends Controller
     public function index()
     {
         //
-        $asistencials = Asistencial::where('estado', 1)->get();
-        return view('asistencial.index', compact('asistencials'));
-        
-    }
-
-    public function pdf(){
-
-        $asistencials=Asistencial::all();
-        $pdf = Pdf::loadView('asistencial.pdf', \compact('asistenciales'));
-        return $pdf->stream();
+        $personas = Persona::where('estado', 1)->get();
+        return view ('persona.index',compact('personas'));
     }
 
     /**
@@ -42,14 +32,14 @@ class AsistencialController extends Controller
     public function store(Request $request)
     {
         //guardar
-        $asistencials = new Asistencial;
-        $asistencials->nombre=$request->input('nombre');
-        $asistencials->genero=$request->input('genero');
-        $asistencials->cargo=$request->input('cargo');
-        $asistencials->ci=$request->input('ci');
-        $asistencials->celular=$request->input('celular');
-        
-        $asistencials->save();
+        $personas = new Persona;
+        $personas->nombre=$request->input('nombre');
+        $personas->apellido=$request->input('apellido');
+        $personas->genero=$request->input('genero');
+        $personas->cargo=$request->input('cargo');
+        $personas->ci=$request->input('ci');
+        $personas->celular=$request->input('celular');
+        $personas->save();
         return redirect()->back();
     }
 
@@ -76,13 +66,14 @@ class AsistencialController extends Controller
     public function update(Request $request, $id)
     {
         //actUALIZAR
-        $asistencials = Asistencial::find($id);
-        $asistencials->nombre=$request->input('nombre');
-        $asistencials->genero=$request->input('genero');
-        $asistencials->cargo=$request->input('cargo');
-        $asistencials->ci=$request->input('ci');
-        $asistencials->celular=$request->input('celular');
-        $asistencials->update();
+        $personas = Persona::find($id);
+        $personas->nombre=$request->input('nombre');
+        $personas->apellido=$request->input('apellido');
+        $personas->genero=$request->input('genero');
+        $personas->cargo=$request->input('cargo');
+        $personas->ci=$request->input('ci');
+        $personas->celular=$request->input('celular');
+        $personas->update();
         return redirect()->back();
     }
 
@@ -92,7 +83,7 @@ class AsistencialController extends Controller
     public function destroy($id)
     {
         //
-        $estado = Asistencial::find($id);
+        $estado = Persona::find($id);
         if ($estado->estado == 1 ) {
             $estado->estado = 0;
             $estado->update();

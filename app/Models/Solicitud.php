@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Asistencial extends Model
+class Solicitud extends Model
 {
-    protected $table = 'asistencials'; 
+    protected $table = 'solicituds';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'nombre',
-        'genero',
+        'cite',
+        'dirigido',
         'cargo',
-        'ci',
-        'celular',
+        'establecimiento',
+        'ref',
+        'fecha_emision',
         'estado',
     ];
-
-    // Si quieres habilitar los timestamps (created_at y updated_at)
     public $timestamps = true;
 
+   
 
 }
